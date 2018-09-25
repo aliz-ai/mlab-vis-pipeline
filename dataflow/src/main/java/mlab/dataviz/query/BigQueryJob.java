@@ -1,22 +1,22 @@
 package mlab.dataviz.query;
 
 import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.threeten.bp.Duration;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.gax.retrying.RetrySettings;
 import com.google.cloud.bigquery.BigQuery;
+import com.google.cloud.bigquery.BigQuery.QueryOption;
+import com.google.cloud.bigquery.BigQuery.QueryResultsOption;
+import com.google.cloud.bigquery.BigQueryException;
 import com.google.cloud.bigquery.BigQueryOptions;
 import com.google.cloud.bigquery.FieldValueList;
 import com.google.cloud.bigquery.QueryJobConfiguration;
 import com.google.cloud.bigquery.QueryResponse;
-import com.google.cloud.bigquery.QueryResult;
 import com.google.cloud.http.HttpTransportOptions;
-import com.google.cloud.bigquery.BigQuery.QueryOption;
-import com.google.cloud.bigquery.BigQuery.QueryResultsOption;
-import com.google.cloud.bigquery.BigQueryException;
-import org.threeten.bp.Duration;
 
 public class BigQueryJob {
 

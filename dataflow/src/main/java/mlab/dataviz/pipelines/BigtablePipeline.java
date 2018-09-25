@@ -3,21 +3,21 @@ package mlab.dataviz.pipelines;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.beam.runners.dataflow.DataflowPipelineJob;
+import org.apache.beam.runners.dataflow.util.MonitoringUtil;
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.gcp.bigquery.BigQueryIO;
+import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.values.PCollection;
 import org.apache.hadoop.hbase.client.Mutation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.api.services.bigquery.model.TableRow;
 import com.google.cloud.bigquery.FieldValueList;
-import com.google.cloud.bigtable.dataflow.CloudBigtableIO;
-import com.google.cloud.bigtable.dataflow.CloudBigtableScanConfiguration;
-import com.google.cloud.dataflow.sdk.Pipeline;
-import com.google.cloud.dataflow.sdk.io.BigQueryIO;
-import com.google.cloud.dataflow.sdk.options.PipelineOptionsFactory;
-import com.google.cloud.dataflow.sdk.runners.DataflowPipelineJob;
-import com.google.cloud.dataflow.sdk.transforms.ParDo;
-import com.google.cloud.dataflow.sdk.util.MonitoringUtil;
-import com.google.cloud.dataflow.sdk.values.PCollection;
+import com.google.cloud.bigtable.beam.CloudBigtableIO;
+import com.google.cloud.bigtable.beam.CloudBigtableScanConfiguration;
 
 import mlab.dataviz.dofn.TableRowToHBase;
 import mlab.dataviz.pipelineopts.BigtableTransferPipelineOptions;
