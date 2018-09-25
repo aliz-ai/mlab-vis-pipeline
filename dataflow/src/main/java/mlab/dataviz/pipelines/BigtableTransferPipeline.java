@@ -7,12 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.beam.runners.dataflow.DataflowPipelineJob;
 import org.apache.beam.runners.dataflow.util.MonitoringUtil;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -166,7 +166,7 @@ public class BigtableTransferPipeline implements Runnable {
 					} else if (pipe != null) {
 						DataflowPipelineJob result = (DataflowPipelineJob) pipe.run();
 			            try {
-			                result.waitToFinish(-1, TimeUnit.MINUTES, new MonitoringUtil.PrintHandler(System.out));
+			                result.waitUntilFinish(Duration.ZERO, new MonitoringUtil.LoggingHandler());
 			            } catch (InterruptedException | IOException e) {
 			                LOG.error(e.getMessage());
 			                e.printStackTrace();

@@ -53,7 +53,6 @@ public class PipelineConfig {
 	 * @param filename Config file path
 	 * @param configName Config property object name
 	 */
-	@SuppressWarnings("unchecked")
 	public PipelineConfig(String filename, String configName) {
 		JSONParser jp = new JSONParser();
 		try {
@@ -81,6 +80,7 @@ public class PipelineConfig {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void switchConfigs(String configName) throws Exception {
 		this.values = (HashMap<String, String>) this.config.get(configName);
 		if (this.values == null) {
