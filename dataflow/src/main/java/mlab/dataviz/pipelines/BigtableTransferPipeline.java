@@ -16,8 +16,6 @@ import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.cloud.bigtable.beam.CloudBigtableIO;
-
 import io.prometheus.client.Gauge;
 import mlab.dataviz.entities.BTPipelineRun;
 import mlab.dataviz.entities.BTPipelineRunDatastore;
@@ -110,7 +108,8 @@ public class BigtableTransferPipeline implements Runnable {
 				
 				if (!RUN_IN_PARALLEL) {
 					pipe = Pipeline.create(options);
-					CloudBigtableIO.initializeForWrite(pipe);
+					// TODO probably not needed anymore
+					//CloudBigtableIO.initializeForWrite(pipe);
 				}
 				
 				int test = options.getTest();
