@@ -13,6 +13,7 @@ public class ExtractCountryCodeFn extends DoFn<TableRow, KV<String, TableRow>> {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ExtractCountryCodeFn.class);
 	
+	@ProcessElement
 	public void processElement(ProcessContext c) throws Exception {
 		TableRow row = c.element();
 		String key = (String) row.get("country_code");

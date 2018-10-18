@@ -13,6 +13,7 @@ public class ExtractLocationKeyFn extends DoFn<TableRow, KV<String, TableRow>> {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ExtractLocationKeyFn.class);
 	
+	@ProcessElement
 	public void processElement(ProcessContext c) throws Exception {
 		TableRow row = c.element();
 		String key = (String) row.get("location_key");

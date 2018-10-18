@@ -104,6 +104,7 @@ public class TableRowToHBase extends DoFn<TableRow, Mutation> {
 		return rowKey.getBytes(StandardCharsets.UTF_8);
 	}
 
+	@ProcessElement
 	public void processElement(ProcessContext c) throws Exception {
 		TableRow row = c.element();
 

@@ -7,11 +7,6 @@ import org.apache.beam.sdk.options.PipelineOptions;
 
 public interface BigtableTransferPipelineOptions extends PipelineOptions, BigQueryOptions {
 
-	@Description("Which M-Lab Project")
-	@Default.String("mlab-sandbox")
-	String getProject();
-	void setProject(String project);
-	
 	@Description("Which Bigtable instance to write to?")
 	@Default.String("mlab-data-viz")
 	String getInstance();

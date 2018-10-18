@@ -22,11 +22,6 @@ public interface HistoricPipelineOptions extends PipelineOptions, BigQueryOption
 	int getTest();
 	void setTest(int test);
 
-	@Description("Which M-Lab Project")
-	@Default.String("mlab-sandbox")
-	String getProject();
-	void setProject(String project);
-
 	@Description("Which Prometheus Instance")
 	@Default.String("prometheus")
 	String getPrometheus();

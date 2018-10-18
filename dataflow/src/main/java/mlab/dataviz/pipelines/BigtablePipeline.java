@@ -10,6 +10,7 @@ import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.hadoop.hbase.client.Mutation;
+import org.apache.hadoop.hbase.client.RetriesExhaustedWithDetailsException;
 import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,7 +122,7 @@ public class BigtablePipeline implements Runnable {
 			} else {
 				// Formally called this.pipeline.apply.
 				PCollection<TableRow> bigQueryCollection = this.pipe.apply(btConfig.getBigtableTable() + " BQ Read",
-						BigQueryIO.readTableRows().fromQuery(queryString));
+						BigQueryIO.readTableRows().usingStandardSql().fromQuery(queryString));
 
 				LOG.info("Setting up bigtable job: " + btConfig.getBigtableTable());
 

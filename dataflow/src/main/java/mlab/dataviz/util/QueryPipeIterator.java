@@ -151,7 +151,7 @@ public class QueryPipeIterator implements Iterator<PCollection<TableRow>> {
 			}
 		}
 
-		PCollection<TableRow> rows = this.pipe.apply("Running query " + queryName, BigQueryIO.readTableRows().fromQuery(queryString));
+		PCollection<TableRow> rows = this.pipe.apply("Running query " + queryName, BigQueryIO.readTableRows().usingStandardSql().fromQuery(queryString));
 
 		return rows;
 	}
