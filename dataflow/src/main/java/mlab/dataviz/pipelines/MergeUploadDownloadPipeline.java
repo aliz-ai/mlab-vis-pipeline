@@ -224,7 +224,7 @@ public class MergeUploadDownloadPipeline {
 
 		// set up the big query read
 		PCollection<TableRow> rows = this.p.apply("run query: " + queryName,
-				BigQueryIO.readTableRows().usingStandardSql().fromQuery(queryString));
+				BigQueryIO.readTableRows().fromQuery(queryString).usingStandardSql());
 
 		rows.apply("write table " + this.outputTable,
 				BigQueryIO.writeTableRows().to(this.outputTable).withSchema(this.outputSchema)

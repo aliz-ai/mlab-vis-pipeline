@@ -10,13 +10,13 @@ import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.hadoop.hbase.client.Mutation;
-import org.apache.hadoop.hbase.client.RetriesExhaustedWithDetailsException;
 import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.api.services.bigquery.model.TableRow;
 import com.google.cloud.bigquery.FieldValueList;
+import com.google.cloud.bigquery.QueryJobConfiguration;
 import com.google.cloud.bigtable.beam.CloudBigtableIO;
 import com.google.cloud.bigtable.beam.CloudBigtableScanConfiguration;
 
@@ -122,7 +122,9 @@ public class BigtablePipeline implements Runnable {
 			} else {
 				// Formally called this.pipeline.apply.
 				PCollection<TableRow> bigQueryCollection = this.pipe.apply(btConfig.getBigtableTable() + " BQ Read",
-						BigQueryIO.readTableRows().usingStandardSql().fromQuery(queryString));
+						BigQueryIO.readTableRows().fromQuery(queryString).usingStandardSql());
+				
+				// REMOVE QueryJobConfiguration config = QueryJobConfiguration.newBuilder(queryString).setUseLegacySql(false).build();
 
 				LOG.info("Setting up bigtable job: " + btConfig.getBigtableTable());
 

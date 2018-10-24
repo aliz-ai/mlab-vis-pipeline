@@ -19,6 +19,7 @@ import org.apache.beam.sdk.testing.TestPipeline;
 import org.apache.beam.sdk.transforms.Combine;
 import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.DoFnTester;
+import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.PCollectionView;
 import org.junit.Before;
@@ -159,6 +160,11 @@ public class AddISPsFnTest {
 
 		// create the tester
 		DoFnTester<TableRow, TableRow> fnTester = DoFnTester.of(addIspsFn);
+		
+		TestPipeline testPipeline = TestPipeline.create();
+		
+		testPipeline.apply(ParDo.of(addIspsFn).withSideInputs(asnsView));
+		
 
 		// set side inputs
 		fnTester.setSideInputInGlobalWindow(asnsView, asnMapIterable);

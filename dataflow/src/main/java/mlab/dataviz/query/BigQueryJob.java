@@ -84,7 +84,7 @@ public class BigQueryJob {
 
 		// Create a query request
 		QueryJobConfiguration queryConfig =
-		    QueryJobConfiguration.of(querySql);
+		    QueryJobConfiguration.newBuilder(querySql).setUseLegacySql(false).build();
 
 		// Request query to be executed and wait for results
 		Job job = bigquery.create(JobInfo.of(queryConfig));
