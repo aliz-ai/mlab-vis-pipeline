@@ -122,7 +122,7 @@ public class BigtablePipeline implements Runnable {
 			} else {
 				// Formally called this.pipeline.apply.
 				PCollection<TableRow> bigQueryCollection = this.pipe.apply(btConfig.getBigtableTable() + " BQ Read",
-						BigQueryIO.readTableRows().fromQuery(queryString).usingStandardSql());
+						BigQueryIO.readTableRows().fromQuery(queryString));
 				
 				// REMOVE QueryJobConfiguration config = QueryJobConfiguration.newBuilder(queryString).setUseLegacySql(false).build();
 
