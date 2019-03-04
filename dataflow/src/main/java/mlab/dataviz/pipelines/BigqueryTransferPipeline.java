@@ -281,15 +281,9 @@ public class BigqueryTransferPipeline implements Runnable {
 
 				// === add server locations and m-lab site info
 				rows = new AddMlabSitesInfoPipeline(pipe, bqUtils).apply(rows);
-
-				// === merge ASNs
-				rows = new MergeASNsPipeline(pipe, bqUtils).apply(rows);
-
+				
 				// === add local time
 				rows = new AddLocalTimePipeline(pipe, bqUtils).apply(rows);
-
-				// === clean locations (important to do before resolving location names)
-				rows = new LocationCleaningPipeline(pipe, bqUtils).apply(rows);
 
 				// === add location names
 				rows = new AddLocationPipeline(pipe, bqUtils).apply(rows);
